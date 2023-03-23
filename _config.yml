@@ -80,7 +80,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: 'https://em-content.zobj.net/thumbs/120/apple/325/man-technologist-light-skin-tone_1f468-1f3fb-200d-1f4bb.png'
 
 # boolean type, the global switch for TOC in posts.
 toc: true
