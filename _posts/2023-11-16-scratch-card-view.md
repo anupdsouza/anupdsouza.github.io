@@ -92,6 +92,12 @@ struct ScratchCardPathMaskView: View {
     }
 }
 ```
+View it in action:
+
+[<img src="https://img.youtube.com/vi/n5fRNTwtc2A/hqdefault.jpg" width="600" height="300"
+/>](https://www.youtube.com/embed/n5fRNTwtc2A)
+
+
 And that's it! The complete code can be found [here.](https://github.com/anupdsouza/ios-scratch-card-view)
 
 Share this article if you found it useful !
