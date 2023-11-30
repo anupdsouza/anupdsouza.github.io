@@ -41,7 +41,7 @@ social:
   email: anupdsouza@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    # - https://twitter.com/username # change to your twitter homepage
+    - https://twitter.com/swiftodyssey # change to your twitter homepage
     - https://github.com/anupdsouza # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
@@ -81,7 +81,7 @@ theme_mode: # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar: 'https://em-content.zobj.net/thumbs/120/apple/325/man-technologist-light-skin-tone_1f468-1f3fb-200d-1f4bb.png'
+avatar: '/assets/images/me.jpg'
 
 # boolean type, the global switch for TOC in posts.
 toc: true
