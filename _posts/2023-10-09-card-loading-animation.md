@@ -75,6 +75,7 @@ private func rotationForCardAtIndex(_ index: Int) -> CGFloat {
 }
 ```
 
-And that's it! The complete code can be found [here.](https://github.com/anupdsouza/ios-card-loading-view)
+And that's it for this post, the complete code can be found [here.](https://github.com/anupdsouza/ios-card-loading-view)
+Also, consider subscribing to my YouTube channel[https://www.youtube.com/@swiftodyssey?sub_confirmation=1] & follow me on X(Twitter)[https://twitter.com/swift_odyssey] for more such information.
 
-Share this article if you found it useful !
+Share this article if you found it useful!
