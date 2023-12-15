@@ -9,11 +9,11 @@ So Google released the Gemini SDK for developers just a few days ago and in this
 
 
 Steps:
-1. Create a new Xcode project, Lets call it `GeminiChat`😉
+* Create a new Xcode project, Lets call it `GeminiChat`😉
 
 ![image](/assets/images/post10/step1.png)
 
-2. Go to `File > Add Package Dependencies...` and enter the following url in the search bar. This will fetch the generative-ai-swift SPM package to integrate in our Xcode project 
+* Go to `File > Add Package Dependencies...` and enter the following url in the search bar. This will fetch the generative-ai-swift SPM package to integrate in our Xcode project 
 
 ```
 https://github.com/google/generative-ai-swift
@@ -22,36 +22,36 @@ https://github.com/google/generative-ai-swift
 ![image](/assets/images/post10/step2.png)
 
 
-3. Click `Add Package` in the subsequent steps to complete integration.
+* Click `Add Package` in the subsequent steps to complete integration.
 
 ![image](/assets/images/post10/step3.png)
 
 ![image](/assets/images/post10/step4.png)
 
-4. To actually work with the API and in order to make requests with Gemini, you need an API KEY. So head over to Google AI Studio website:
+* To actually work with the API and in order to make requests with Gemini, you need an API KEY. So head over to Google AI Studio website:
 `https://makersuite.google.com/app/apikey`
 
 You might need to login here first, so do that if prompted.
 
-5. Next, click on the `Create API key in new project` option.
+* Next, click on the `Create API key in new project` option.
 A new dialog will show with the generated API key, so Copy it.
 
 ![image](/assets/images/post10/step5.png)
 
 ![image](/assets/images/post10/step6.png)
 
-6. Next, back in Xcode select `File > New File > Property List`. You could name the file whatever you want, I went with `GenerativeAI-Info`; & click `Create`
+* Next, back in Xcode select `File > New File > Property List`. You could name the file whatever you want, I went with `GenerativeAI-Info`; & click `Create`
 
 ![image](/assets/images/post10/step7.png)
 
 
-7. Add a key-value pair with the name `API_KEY` and the value as the String API key that you copied from step #5 above. **It is recommended that you ignore this file in source control so as to not expose the api key in public.**
+* Add a key-value pair with the name `API_KEY` and the value as the String API key that you copied from step #5 above. **It is recommended that you ignore this file in source control so as to not expose the api key in public.**
 
 ![image](/assets/images/post10/step8.png)
 
 ![image](/assets/images/post10/step9.png)
 
-8. Next, create a new Swift file with the name `APIKey` and paste the following:
+* Next, create a new Swift file with the name `APIKey` and paste the following:
 ```
 enum APIKey {
   // Fetch the API key from `GenerativeAI-Info.plist`
@@ -75,21 +75,21 @@ enum APIKey {
 ```
 This code looks for the api key inside the plist in order to pass it onto the generative model in the next steps. Remember to replace `GenerativeAI-Info.plist` if you provided a different file name in step #6.
 
-9. Switch to `ContentView.swift` and import the GoogleAI module below the `import SwiftUI` statement.
+* Switch to `ContentView.swift` and import the GoogleAI module below the `import SwiftUI` statement.
 ```
 import GoogleGenerativeAI
 ```
-10. Next, we create a GenerativeModel in order to make API calls. For this example, we will be doing text-only input to the AI so set the model name as `gemini-pro`.
+* Next, we create a GenerativeModel in order to make API calls. For this example, we will be doing text-only input to the AI so set the model name as `gemini-pro`.
 
 ```
 let model = GenerativeModel(name: "gemini-pro", apiKey: APIKey.default)
 ```
-11. Next we’ll create `State` properties to store the text input to the AI model as well as to capture the AI response. We'll provide a default welcome text to show the user when the app loads.
+* Next we’ll create `State` properties to store the text input to the AI model as well as to capture the AI response. We'll provide a default welcome text to show the user when the app loads.
 ```
 @State var textInput = ""
 @State var aiResponse = "Hello! How can I help you today?"
 ```
-12. After this we add a basic text field & button in order to allow the user to enter some input for the AI and call a method once done. The method will make a request to the AI and return a response which we will then display in the UI.
+* After this we add a basic text field & button in order to allow the user to enter some input for the AI and call a method once done. The method will make a request to the AI and return a response which we will then display in the UI.
 ```
 HStack {
        TextField("Enter a message", text: $textInput)
@@ -125,11 +125,11 @@ func sendMessage() {
     }
 ```
 
-13. The complete code looks like this. I've added some cosmetic changes to give it a nice look and feel. I'm animating the gemini logo to indicate to the user of something happening each time a request is made
+* The complete code looks like this:
 
 ![image](/assets/images/post10/gemini-code.png)
 
-14. Finally, enter some input for the AI and wait for the response.
+* Finally, enter some input for the AI and wait for the response.
 
 ![image](/assets/images/post10/gemini-io.png)
 
