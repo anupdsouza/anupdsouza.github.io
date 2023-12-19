@@ -5,6 +5,9 @@ categories: [iOS Development, AI, Gemini, Google, SwiftUI, Swift]
 tags: [Gemini, AI, iOS, SwiftUI]
 ---
 
+[<img src="https://img.youtube.com/vi/VO3YGN2UuHc/hqdefault.jpg" width="600" height="350"
+/>](https://www.youtube.com/embed/VO3YGN2UuHc)
+
 In the [previous post](https://www.anupdsouza.com/posts/getting-started-with-gemini/), we saw how we could send some text-only input & get a response from Gemini AI's `gemini-pro` model. This is alright for simple tasks but to have a more conversational dialogue with the AI, this is not sufficient. Thankfully, Google has a solution for that.
 
 According to the documentation
