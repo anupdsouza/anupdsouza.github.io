@@ -71,7 +71,7 @@ The complete code looks like this
 
 ![image](/assets/images/post12/multimodal-chat-code.png)
 
-Reusing the chat interface code from the previous post along with some modifications in order to show images as well, we finally get this:
+Reusing the chat interface code from the previous post along with some updates to allow users to pick photos(limited to 3 for this example) with the photo picker, we finally get this:
 
 
 ![image](/assets/images/post12/multimodal-chat.png)
