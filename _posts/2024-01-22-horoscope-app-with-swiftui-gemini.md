@@ -26,7 +26,7 @@ This is extremely beneficial, again as described by Google's Document AI
 
 Broadly speaking, summarization helps you get to the juicy bits of information from the vast sea of data that exists. This data could be a book or as mentioned above, user reviews of a product on an e-commerce website.
 
-I hadn't really explored Gemini AI's summarization capability until I was playing around with prompts in `Google AI Studio` when I thought it would be cool to apply the technique of summarization & with a twist. Enter `tones`; we can ask Gemini to respond with a specific tone during our conversation. When queried about conversational tones, this is what Gemini responded with:
+I hadn't really explored Gemini AI's summarization capability until I was playing around with prompts in `Google AI Studio` when I thought it would be cool to apply the technique of summarization with a twist. Enter `tones`. We can ask Gemini to respond with a specific tone during our conversation. When queried about conversational tones, this is what Gemini responded with:
 
 > How can I set the conversation tone? What are the available options?
 
