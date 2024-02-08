@@ -17,7 +17,7 @@ Google has a really cool on-hover effect that you can see on the web if you were
 
 What's interesting is that if you were to hover over any item, it smoothly expands to reveal additional detail
 
-![image](/assets/images/post14/google-carousal-web-expand.mp4)
+![image](/assets/images/post14/google-carousal-web-expand.gif)
 
 The expanded item shows details such as the year of release, certification, runtime & watch options etc. Notice that the expanded view displays a still from the movie that very nicely comes into view on hover and reverts to the movie poster when no longer hovering. Also if you were to hover over an item that is partially visible, it smoothly expands into view. Pretty neat !
 
@@ -54,11 +54,11 @@ ScrollViewReader { proxy in
 }
 ```
 
-Firstly, we need a ScrollView with an HStack of item views. Each item view has a fixed width unless it is the selected item i.e. tapped item instead of hovered; in which case it displays wider than other items in order to display more details.
+Firstly, we need a `ScrollView` with an `HStack` of item views. Each item view has a fixed width unless it is the selected item i.e. tapped item instead of hovered; in which case it displays wider than other items in order to display more details.
 
 We add a `onTapGesture` modifier to the view to set  the selected item to the one we tapped on or set it to nil if it was previously selected. We do this inside the `withAnimation` function with duration of `0.4`. In case you're wondering, I got this duration by inspecting the web carousal item properties in Chrome.
 
-We then `scrollTo` the selected item with the anchor set to `center` to bring the item into view if it is obscured in any way.
+We then `scrollTo` the selected item with the anchor set to `center` using the `ScrollViewReader` proxy to bring the item into view if it is obscured in any way.
 
 For the actual item view, the crux looks something like this:
 ```
@@ -94,7 +94,7 @@ Using a `ZStack` we place 2 `Image` views to display the poster image and the st
 
 The result looks something like this:
 
-![image](/assets/images/post14/google-carousal-ios.mp4)
+![image](/assets/images/post14/google-carousal-ios.gif)
 
 Notes:
 * I tried using a `LazyHStack` instead of a regular `HStack` but that affected the animation
