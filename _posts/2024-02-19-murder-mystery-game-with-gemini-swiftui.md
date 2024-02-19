@@ -107,8 +107,9 @@ before specifying its details in the prompt along with the expected type. For ex
 >plot as string, questions as an array of question objects where each question object is composed of the question as string, clue as string and responses as an array of strings, and finally the culprit as string
 
 * Even though I specified the output to be in JSON format, the response was far from parseable because the response text was often enclosed in backticks like you see next. This would break parsing & would complicate things further as one cannot always string find-&-replace these extras in the response. After much R&D, I came upon this [Reddit thread](https://www.reddit.com/r/Bard/comments/18mmszg/cant_remove_backticks_from_gemini_pro_api/) which suggested adding **do not use markdown** in the prompt which worked for me but not a 100%. As others have suggested in the thread, it might be useful to provide a sample response to the model to achieve better accuracy.
+
 ```
-```json
+json
  {
   plot:"In a grand manor house nestled amidst...
 
