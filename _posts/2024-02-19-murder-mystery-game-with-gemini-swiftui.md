@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Create a Murder Myster game powered by Gemini AI with SwiftUI"
+title: "Create a Murder Mystery game powered by Gemini AI with SwiftUI"
 categories: [iOS Development, AI, Gemini, Google, SwiftUI, Swift]
 tags: [Gemini, AI, iOS, SwiftUI]
 ---
