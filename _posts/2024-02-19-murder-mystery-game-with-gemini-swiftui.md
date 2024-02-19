@@ -86,7 +86,8 @@ Some key take-aways are as follows:
 
 * You have to be as granular as possible when describing what exactly do you want to the Gemini generative model.
 * Break down complex details as much as you can or else the results can vary vastly.
-* You can specify exactly how you want the data back from the generative model. Note that I specify that the response be returned in JSON format and I've also supplied valid key's for the JSON to use. This is important because if these differ, then you will not be able to parse the data. In my case, I modeled the expected data format first as follows before specifying its details in the prompt along with the expected type. For example, `plot as string, questions as an array of question objects where each question object is composed of the question as string, clue as string and responses as an array of strings, and finally the culprit as string`
+* You can specify exactly how you want the data back from the generative model. Note that I specify that the response be returned in JSON format and I've also supplied valid key's for the JSON to use. This is important because if these differ, then you will not be able to parse the data. In my case, I modeled the expected data format first as follows:
+
 ```
 struct MurderMystery: Codable {
     let plot: String
@@ -100,6 +101,11 @@ struct Question: Codable {
     var responses: [String]
 }
 ```
+
+before specifying its details in the prompt along with the expected type. For example:
+
+>plot as string, questions as an array of question objects where each question object is composed of the question as string, clue as string and responses as an array of strings, and finally the culprit as string
+
 * Even though I specified the output to be in JSON format, the response was far from parseable because the response text was often enclosed in backticks like you see next. This would break parsing & would complicate things further as one cannot always string find-&-replace these extras in the response. After much R&D, I came upon this [Reddit thread](https://www.reddit.com/r/Bard/comments/18mmszg/cant_remove_backticks_from_gemini_pro_api/) which suggested adding **do not use markdown** in the prompt which worked for me but not a 100%. As others have suggested in the thread, it might be useful to provide a sample response to the model to achieve better accuracy.
 ```
 ```json
