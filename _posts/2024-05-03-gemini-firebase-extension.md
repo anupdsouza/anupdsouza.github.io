@@ -277,7 +277,7 @@ Consider subscribing to my [YouTube channel](https://www.youtube.com/@swiftodyss
 Share this article if you found it useful !
 
 Resources:
-https://extensions.dev/extensions/googlecloud/firestore-genai-chatbot
-https://ai.google.dev/gemini-api/docs/firebase-extensions
-[Firebase after hours on YT](https://www.youtube.com/live/WbaCQ5ZnHwI)
+* https://extensions.dev/extensions/googlecloud/firestore-genai-chatbot
+* https://ai.google.dev/gemini-api/docs/firebase-extensions
+* [Firebase after hours on YT](https://www.youtube.com/live/WbaCQ5ZnHwI)
 
