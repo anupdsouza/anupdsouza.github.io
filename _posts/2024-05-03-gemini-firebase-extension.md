@@ -260,7 +260,7 @@ struct ChatDocument: Codable {
 }
 ```
 
-If you recall, the properties you see above are the fields that appear in the Firestore DB for each document/chat. Note the `prompt` & `response` properties here which map to the `prompt` & `response` fields in the FIrestore DB. We then construct our `ChatService` class like so:
+If you recall, the properties you see above (apart from chatState) are the fields that appear in the Firestore DB for each document/chat. Note the `prompt` & `response` properties here which map to the `prompt` & `response` fields in the FIrestore DB. We then construct our `ChatService` class like so:
 
 ```
 import FirebaseFirestore
@@ -303,7 +303,7 @@ import FirebaseFirestoreSwift
 }
 ```
 
-In the `fetchMessages()` function, we create a Snapshot Listener to continually monitor the Firestore DB we created above for changes at the `collectionPath`, ordered by the `createTime` field. We then decode each document/chat from the snapshot into our decodable `ChatDocument`. Finally we create 2 `Chat` instances, one for the user's input & one for the AI while we wait for the response.
+In the `fetchMessages()` function, we create a Snapshot Listener to continually monitor the Firestore DB we created above for changes at the `collectionPath`, ordered by the `createTime` field. We then decode each document/chat from the snapshot into our decodable `ChatDocument`. Finally we create 2 `Chat` instances, one for the user's input & one for the AI while we wait for the response. To send a message to the API, we call the `sendMessage()` function where we add a new document at the given collection path via the `prompt` field.
 
 ```
 struct Chat: Hashable {
@@ -323,6 +323,7 @@ struct Chat: Hashable {
     }
 }
 ```
+
 Run the app & the chat service will fetch any existing chats from the Firestore DB, always keeping it in sync as you send messages from the iOS app. As you've seen by now, it's not that hard to setup a chatbot on iOS thanks to the firebase extension. What I particularly love about this is the chat storage that you get along with chat context that persists for quite some time. The extension should unlock a lot of possiblities especially if you love Gemini & Firebase.
 
 And that's it for this post! The complete code can be found [here](https://github.com/anupdsouza/ios-gemini-firebase-swiftui)
