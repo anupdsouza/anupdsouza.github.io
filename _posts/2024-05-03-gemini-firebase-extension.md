@@ -77,7 +77,7 @@ be changed later. Click `Next`.
 
 ![image](/assets/images/post17/p17-16.png)
 
-* Select `Start in test mode` in the next step, then click `Create`. Starting in test mode helps helps you read/write to the Firestore DB quickly with relaxed security 
+* Select `Start in test mode` in the next step, then click `Create`. Starting in test mode helps you read/write to the Firestore DB quickly with relaxed security 
 rules. It is advised that you later setup auth rules to prevent misuse or malicious access to the Firestore DB.
 
 ![image](/assets/images/post17/p17-17.png)
@@ -90,7 +90,7 @@ rules. It is advised that you later setup auth rules to prevent misuse or malici
 
 ![image](/assets/images/post17/p17-19.png)
 
-* The Extensions pane will load & you will see the `Build Chatbot with the Gemini API` extension. Click on `Install`. If you don't see the extension here, click on `Explore Extensions Hub` & search for the extension there.
+* The Extensions pane will load & you will see the `Build Chatbot with the Gemini API` extension option. Click on `Install`. If you don't see the extension here, click on `Explore Extensions Hub` & search for the extension there.
 
 ![image](/assets/images/post17/p17-20.png)
 
@@ -114,7 +114,7 @@ rules. It is advised that you later setup auth rules to prevent misuse or malici
 
 ![image](/assets/images/post17/p17-25.png)
 
-* Payment confirmation should happen quickly & you should be taken back to the `Install Extension` screen with your billing account shown detail shown. If you have multiple billing accounts, select the one you want to use from the dropdown, then click `Continue`. If for some reason you dont see it, just click on the `Upgrade project to continue` option again.
+* Payment confirmation should happen quickly & you should be taken back to the `Install Extension` screen with your billing account detail shown. If you have multiple billing accounts, select the one you want to use from the dropdown, then click `Continue`. If for some reason you dont see it, just click on the `Upgrade project to continue` option again.
 
 ![image](/assets/images/post17/p17-26.png)
 
@@ -130,9 +130,9 @@ rules. It is advised that you later setup auth rules to prevent misuse or malici
 
 ![image](/assets/images/post17/p17-29.png)
 
-* In the `Review APIs enabled and resources created` step, take a look around. The extension enables the Vertex AI API for access to the Vertex AI Gemini API, creates Cloud functions to listen to Firestore DB data changes as well as generate conversations & also enables the Cloud Secret Manager to discretely use the Google AI API Key in your requests. Previously with the Gemini Swift SDK, you'd have had to create a secret key in app studio & manage passing it in Gemini API requests manually. Here, the extension does it for you automatically!
+* In the `Review APIs enabled and resources created` step, take a look around. The extension enables the Vertex AI API for access to the Vertex AI Gemini API, creates Cloud functions to listen to Firestore DB data changes as well as generate conversations & also enables the Cloud Secret Manager to discreetly use the Google AI API Key in your requests. Previously with the Gemini Swift SDK, you'd have had to create a secret key in app studio & manage passing it in Gemini API requests manually. Here, the extension does it for you automatically!
 
-* Scroll & enable the `Artifact Registry`, `Cloud Functions` & `Secret Manager` services & enable all of them.
+* Scroll & enable the `Artifact Registry`, `Cloud Functions` & `Secret Manager` services.
 
 ![image](/assets/images/post17/p17-30.png)
 
@@ -146,7 +146,7 @@ rules. It is advised that you later setup auth rules to prevent misuse or malici
 
 ![image](/assets/images/post17/p17-34.png)
 
-* In the `Configure extension` step, change the Gemini API Provider from `Google AI` to `Vertex AI`. If you choose `Google AI`, you will need to enter the Gemini API secret key in the next field. The next few fields show the Gemini model that will be used i.e. `gemini-pro`, the Firestore collection path i.e. `generate` & the `prompt` & `response` fields. The collection path is the Firestore database path where all chats will be stored as `documents`, while the `prompt` & `response` fields will hold the messages sent to & responses received from the Gemini API. You will see these over the next few steps.
+* In the `Configure extension` step, change the Gemini API Provider from `Google AI` to `Vertex AI`. If you choose `Google AI`, you will need to enter the Gemini API secret key in the next field. The next few fields show the Gemini model that will be used i.e. `gemini-pro`, the Firestore collection path i.e. `generate` & the `prompt` & `response` fields. The collection path is the Firestore database path where all chats will be stored as `documents`, while the `prompt` & `response` fields will hold the messages sent to & responses received from the Gemini API. You will see these over the next few steps. You can change the collection path to something else, say `chat`. Just remember it though as we will need it in the iOS app.
 
 ![image](/assets/images/post17/p17-35.png)
 
@@ -182,7 +182,62 @@ This concludes setting up of the extension. Let's build the client iOS app now.
 
 ![image](/assets/images/post17/p17-43.png)
 
-As we've seen in previous tutorials we create a simple UI with a scrolling list to display the chat conversation with a text field at the bottom to send messages to Gemini. In order to send & receive messages from the Gemini API, we create an `Observable ChatService` class that does the heavy lifting. We first create a `ChatDocument` to map the document/chat from the Firestore DB as follows:
+As we've seen in previous tutorials we create a simple UI with a scrolling list to display the chat conversation with a text field at the bottom to send messages to Gemini. 
+
+```
+// MARK: Chat list view
+@ViewBuilder private func chatListView() -> some View {
+    ScrollViewReader(content: { proxy in
+        ScrollView {
+            ForEach(chatService.messages, id: \.self) { chatMessage in
+                chatMessageView(chatMessage)
+                    .id(chatMessage.id)
+            }
+        }
+        .onChange(of: chatService.messages) { oldValue, newValue in
+            guard let recentMessage = chatService.messages.last else { return }
+            DispatchQueue.main.async {
+                withAnimation {
+                    proxy.scrollTo(recentMessage.id, anchor: .bottom)
+                }
+            }
+        }
+    })
+}
+
+// MARK: Input view
+@ViewBuilder private func inputView() -> some View {
+    HStack {
+        TextField("Enter a message...", text: $textInput)
+            .textFieldStyle(.roundedBorder)
+            .foregroundStyle(.black)
+        Button(action: sendMessage, label: {
+            Image(systemName: "paperplane.fill")
+        })
+    }
+}
+
+// MARK: Chat message view
+@ViewBuilder private func chatMessageView(_ chat: Chat) -> some View {
+    ChatBubble(direction: chat.isUser ? .right : .left) {
+        Text(chat.message)
+            .font(.title3)
+            .padding(.all, 20)
+            .foregroundStyle(.white)
+            .background {
+                chat.isUser ? Color.blue : Color.green
+            }
+    }
+}
+
+// MARK: Send message
+private func sendMessage() {
+    chatService.sendMessage(textInput)
+    textInput = ""
+}
+```
+
+In order to send & receive messages from the Gemini API, we create an `Observable ChatService` class that does the heavy lifting. We first create a `ChatDocument` to map the document/chat from the Firestore DB as follows:
 
 ```
 struct ChatDocument: Codable {
