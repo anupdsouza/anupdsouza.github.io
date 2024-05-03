@@ -324,7 +324,11 @@ struct Chat: Hashable {
 }
 ```
 
-Run the app & the chat service will fetch any existing chats from the Firestore DB, always keeping it in sync as you send messages from the iOS app. As you've seen by now, it's not that hard to setup a chatbot on iOS thanks to the firebase extension. What I particularly love about this is the chat storage that you get along with chat context that persists for quite some time. The extension should unlock a lot of possiblities especially if you love Gemini & Firebase.
+Run the app & the chat service will fetch any existing chats from the Firestore DB, always keeping it in sync as you send messages from the iOS app.
+
+![image](/assets/images/post17/result.png)
+
+As you've seen by now, it's not that hard to setup a chatbot on iOS thanks to the firebase extension. What I particularly love about this is the chat storage that you get along with chat context that persists for quite some time. The extension should unlock a lot of possiblities especially if you love Gemini & Firebase.
 
 And that's it for this post! The complete code can be found [here](https://github.com/anupdsouza/ios-gemini-firebase-swiftui)
 
