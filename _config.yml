@@ -32,7 +32,7 @@ github:
   username: anupdsouza # change to your github username
 
 twitter:
-  username: twitter_username # change to your twitter username
+  username: swift_odyssey  # change to your twitter username
 
 social:
   # Change to your full name.
@@ -41,7 +41,7 @@ social:
   email: anupdsouza@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/swiftodyssey # change to your twitter homepage
+    - https://twitter.com/swift_odyssey # change to your twitter homepage
     - https://github.com/anupdsouza # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
