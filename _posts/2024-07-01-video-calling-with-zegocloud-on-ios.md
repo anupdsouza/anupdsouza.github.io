@@ -12,7 +12,7 @@ Watch the video or follow along with the post below.
 />](https://www.youtube.com/embed/6_zJ4I_xdKM)
 
 
-In this tutorial I will guide you on how to create a voice & video calling app using ZEGOCLOUD. ZEGOCLOUD is a leading realtime interaction platform that provides developers with an extensive array of tools and services designed to effortlessly incorporate real-time video communication into applications. With superior video and audio quality, low latency, and the ability to scale, ZEGOCLOUD is a reliable choice for adding video call functionalities to iOS apps & their [UIKit's](https://www.zegocloud.com/uikits) make it easy to integrate into existing projects as well. In the following post we'll implement 1-on-1 voice & video calling feature in our iOS application. 
+In this tutorial I will guide you on how to create a voice & video calling app using [ZEGOCLOUD](https://www.zegocloud.com/). ZEGOCLOUD is a leading realtime interaction platform that provides developers with an extensive array of tools and services designed to effortlessly incorporate real-time video communication into applications. With superior video and audio quality, low latency, and the ability to scale, ZEGOCLOUD is a reliable choice for adding video call functionalities to iOS apps & their [UIKit's](https://www.zegocloud.com/uikits) make it easy to integrate into existing projects as well. In the following post we'll implement 1-on-1 voice & video calling feature in our iOS application. 
 
 Visit https://console.zegocloud.com & click on `Sign up`
 
