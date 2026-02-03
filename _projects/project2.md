@@ -1,5 +1,5 @@
 ---
-order: 1
+order: 2
 layout: post
 title: Project Two
 description: Another placeholder project to test the grid layout.
