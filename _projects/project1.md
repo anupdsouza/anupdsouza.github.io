@@ -1,9 +1,9 @@
 ---
 order: 1
 layout: post
-title: Sainfeld — AI Generated Seinfeld Episodes
+title: Sainfeld - AI Generated Seinfeld Episodes
 description: An automated AI system that writes brand new Seinfeld-style episodes, generates illustrated scenes, and publishes them weekly to a live website.
-image: /images/projects/project-sainfeld/featured.jpg
+image: /images/projects/sainfeld/featured.jpg
 github: #
 featured: true
 ---
