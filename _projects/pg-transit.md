@@ -26,7 +26,7 @@ My client needed to modernize their existing transit app to support real-time fe
 
 ## Tech Stack
 
-Swift • SwiftUI • MapKit • WeatherKit • Core Data • Combine • • SwiftProtobuf • Firebase Storage • GitHub Actions
+Swift • SwiftUI • MapKit • WeatherKit • Core Data • Combine • SwiftProtobuf • Firebase Storage • GitHub Actions
 
 ---
 
