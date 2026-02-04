@@ -21,7 +21,7 @@ Every run:
 
 The site updates itself like a tiny production pipeline.
 
-🔗 <a href="https://sainfeld-d1973.web.app/" target="_blank" rel="noopener noreferrer"><strong>Live demo</strong></a>
+🔗 <a href="https://sainfeld.anupdsouza.com/" target="_blank" rel="noopener noreferrer"><strong>Live demo</strong></a>
 
 ---
 
