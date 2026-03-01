@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: "Uploading Google Play Games Achievements in Bulk"
-date: 2026-03-01 00:08:00 +0530
+date: 2026-03-01 08:00:00 +0530
 image: '/images/posts/gpg-achievements-upload/featured.jpg'
 description: "Notes on setting up and bulk uploading Google Play Games achievements."
 excerpt: "Practical lessons on automating Google Play Games achievements upload, including required files, localization, and common pitfalls."
