@@ -168,27 +168,27 @@ Now we need a place to securely store our live data.
 
 2. Enter a name, such as `Workshop Registration`. You can edit the unique identifier (project ID) below the text field if you wish. Click **Continue**.
 
-![firebase-project-name](/images/posts/sync-google-forms-sheets-firebase/firebase-project-name.png)
+    ![firebase-project-name](/images/posts/sync-google-forms-sheets-firebase/firebase-project-name.png)
 
 3. You can toggle **OFF** "Enable Gemini in Firebase" as we won't need AI assistance for this project, then click **Continue**.
 
-![firebase-project-ai](/images/posts/sync-google-forms-sheets-firebase/firebase-project-ai.png)
+    ![firebase-project-ai](/images/posts/sync-google-forms-sheets-firebase/firebase-project-ai.png)
 
 4. You can also toggle **OFF** "Enable Google Analytics for this project" to keep things clean and simple, as analytics are out of scope for this backend implementation, then click **Continue**,
 
-![firebase-project-analytics](/images/posts/sync-google-forms-sheets-firebase/firebase-project-analytics.png)
+    ![firebase-project-analytics](/images/posts/sync-google-forms-sheets-firebase/firebase-project-analytics.png)
 
 5. Click **Create project**. Wait a few seconds for the setup to finish, then click **Continue**.
 
-![firebase-project-ready](/images/posts/sync-google-forms-sheets-firebase/firebase-project-ready.png)
+    ![firebase-project-ready](/images/posts/sync-google-forms-sheets-firebase/firebase-project-ready.png)
 
 6. From your new project dashboard, expand the **Databases and storage** menu on the left sidebar and select **Firestore**.
 
-![firebase-select-firestore](/images/posts/sync-google-forms-sheets-firebase/firebase-select-firestore.png)
+    ![firebase-select-firestore](/images/posts/sync-google-forms-sheets-firebase/firebase-select-firestore.png)
 
 7. Click the **Create database** button.
 
-![firebase-create-db](/images/posts/sync-google-forms-sheets-firebase/firebase-create-db.png)
+    ![firebase-create-db](/images/posts/sync-google-forms-sheets-firebase/firebase-create-db.png)
 
 8. Select **Standard edition** and click **Next**.
 9. Leave the Database ID as `(default)`, choose a physical server location closest to your target users, and click **Next**.
@@ -233,13 +233,13 @@ For our Google Sheet to write data to Firestore securely, bypassing the read-onl
 
 1. Open the [Google Cloud Console](https://console.cloud.google.com/) and ensure your specific Firebase project (`Workshop Registration`) is selected in the top dropdown menu.
 
-![gcc-project-select](/images/posts/sync-google-forms-sheets-firebase/gcc-project-select.png)
+    ![gcc-project-select](/images/posts/sync-google-forms-sheets-firebase/gcc-project-select.png)
 
 2. Open the navigation menu (☰) in the top left, go to **IAM & Admin**, and select **Service Accounts**.
 3. Look for the default service account that has `firebase-adminsdk` in its email address (e.g., `firebase-adminsdk-xxxxx@<your-project-id>.iam.gserviceaccount.com`).
 4. Under the "Actions" column for that specific account, click the three-dot menu **(⋮)** and select **Manage keys**.
 
-![gcc-project-manage-keys](/images/posts/sync-google-forms-sheets-firebase/gcc-project-manage-keys.png)
+    ![gcc-project-manage-keys](/images/posts/sync-google-forms-sheets-firebase/gcc-project-manage-keys.png)
 
 5. Click **Add Key** -> **Create new key**.
 6. Leave the format as **JSON** and click **Create**.
@@ -610,24 +610,24 @@ Time to watch the automation unfold in real time!
 3. Open this form URL in a new browser tab.
 4. Fill out the form with sample data for the Name, Location, and Meal Preference fields, then click **Submit**.
 
-![form-test-data](/images/posts/sync-google-forms-sheets-firebase/form-test-data.png)
+    ![form-test-data](/images/posts/sync-google-forms-sheets-firebase/form-test-data.png)
 
 5. Switch over to your **Google Sheet**. Almost immediately or sometime within a few seconds, you will see a new row automatically appear!
    - Notice that the _Status_ in column `E` defaults to `Pending`.
    - A checkbox automatically generates in the _Approved_ column `F`.
 
-![sheet-test-data-pending](/images/posts/sync-google-forms-sheets-firebase/sheet-test-data-pending.png)
+        ![sheet-test-data-pending](/images/posts/sync-google-forms-sheets-firebase/sheet-test-data-pending.png)
 
 6. Go check your **Data** tab of your Firestore Database. Right now, it should be entirely empty.
 7. Back in your Google Sheet, click the **Approved** checkbox in column `F`.
    - The _Status_ column will temporarily say `Processing...` before switching to `Active`.
    - The _Firestore ID_ column will populate with a unique alphanumeric string.
 
-![sheet-test-data-approved](/images/posts/sync-google-forms-sheets-firebase/sheet-test-data-approved.png)
+        ![sheet-test-data-approved](/images/posts/sync-google-forms-sheets-firebase/sheet-test-data-approved.png)
 
 8. Switch back to your **Data** tab of your Firestore Database and refresh the page. You will now see an `attendees` collection containing a new document! The document ID matches your sheet perfectly, and all the data is live.
 
-![firebase-test-data-imported](/images/posts/sync-google-forms-sheets-firebase/firebase-test-data-imported.png)
+    ![firebase-test-data-imported](/images/posts/sync-google-forms-sheets-firebase/firebase-test-data-imported.png)
 
 **Bonus Feature:**
 Did you notice the new **Maintenance** menu that appeared in your Google Sheet's toolbar alongside _Help_?
