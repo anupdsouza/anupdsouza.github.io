@@ -164,7 +164,7 @@ Now we need a place to securely store our live data.
 
 1. Go to the [Firebase Console](https://console.firebase.google.com/) and click **Create a project** (or Add project).
 
-  ![firebase-create-project](/images/posts/sync-google-forms-sheets-firebase/firebase-create-project.png)
+    ![firebase-create-project](/images/posts/sync-google-forms-sheets-firebase/firebase-create-project.png)
 
 2. Enter a name, such as `Workshop Registration`. You can edit the unique identifier (project ID) below the text field if you wish. Click **Continue**.
 
