@@ -27,8 +27,8 @@ menu__settings:
 #-------------------------------
 # Hero Settings
 hero:
-  hero__title: Hello, my name’s Anup D'Souza. I’m a mobile application developer based in Mumbai.
-  hero__description: I've been developing mobile applications for the iOS platform for over a decade. Apart from coding, I love gaming, creating tutorials, blogging about my learnings and drinking coffee ☕️.
+  hero__title: Hello, my name’s Anup D'Souza. I’m a mobile application developer based in Australia.
+  hero__description: I've been building mobile apps for over a decade, specialising in iOS and more recently Flutter and modern web technologies. I also provide freelance software development services. Apart from coding, I love gaming, creating tutorials, blogging about my learnings and drinking coffee ☕️.
 
 
 #-------------------------------
