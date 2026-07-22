@@ -3,7 +3,7 @@ layout: post
 published: true
 title: "Create a Storybook app powered by Gemini AI & Dall-E with SwiftUI"
 date: 2024-03-20 15:30:00 +0530
-image:  '/images/featured/coding.jpg'
+image: "/images/posts/storybook-with-gemini-dalle-swiftui/featured.jpg"
 description: "In this post we'll once again harness the power of Gemini AI's data generation combining it with Dall-E's image generation capability to create a storybook app for kids."
 excerpt: "In this post we'll once again harness the power of Gemini AI's data generation combining it with Dall-E's image generation capability to create a storybook app for kids."
 seo_title: "Create a Storybook app powered by Gemini AI & Dall-E with SwiftUI"
@@ -21,8 +21,9 @@ tags:
   - OpenAI
   - DallE
 ---
+
 <p align="center" style="font-size: 0.85rem;">
-  Photo by <a href="https://unsplash.com/@ikukevk?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Kevin Ku</a> on <a href="https://unsplash.com/photos/closeup-photo-of-eyeglasses-w7ZyuGYNpRQ?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+  Photo by <a href="https://unsplash.com/@sigmund?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Compagnons</a> on <a href="https://unsplash.com/photos/person-holding-white-book-page-qdrRq_O4cyM?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
 </p>
 
 <iframe width="640" height="360" src="https://www.youtube-nocookie.com/embed/NOgoWd6phn0?controls=0" frameborder="0" allowfullscreen></iframe>
@@ -62,20 +63,21 @@ I want you to create a children's story with the following prompt: \(promptText)
 ```
 
 Some important points to note about the prompt:
-* I've explicitly specified the age group
-* I've also specified the writing style & composition of the story viz. short sentences, simple words, progressing structurally with a start, middle & end. 
-* I also request prompts for image generation by processing the entire story once Gemini generates it. The prompts will be supplied to Dall-E.
-* Lastly, I provide a model JSON structure for returning the details. 
+
+- I've explicitly specified the age group
+- I've also specified the writing style & composition of the story viz. short sentences, simple words, progressing structurally with a start, middle & end.
+- I also request prompts for image generation by processing the entire story once Gemini generates it. The prompts will be supplied to Dall-E.
+- Lastly, I provide a model JSON structure for returning the details.
 
 The code to fetch a story from Gemini therefore looks like this:
 
-```
+````
 private let geminiModel = GenerativeModel(name: "gemini-1.0-pro", apiKey: APIKey.gemini)
 
 func fetchStory(_ promptText: String) async {
     fetchingStory = true
     errorFetchingStory = false
-    
+
     do {
         let prompt = """
         I want you to create a children's story with the following prompt: \(promptText)
@@ -108,7 +110,7 @@ func fetchStory(_ promptText: String) async {
             errorFetchingStory = true
             return
         }
-        
+
         let story = try JSONDecoder().decode(Story.self, from: data)
         var storyText = [String]()
         for i in stride(from: 0, to: story.story.count, by: 2) {
@@ -117,7 +119,7 @@ func fetchStory(_ promptText: String) async {
         }
         print(storyText)
         var storyBook = Storybook(title: story.title, moral: story.moral, story: storyText)
-        
+
         do {
             let images = try await generateImages(for: story.imagePrompts, story: storyText.joined(separator: " "))
             storyBook.images.append(contentsOf: images)
@@ -129,7 +131,7 @@ func fetchStory(_ promptText: String) async {
         }
 
         print("the story: \(story.story.joined())")
-        
+
         await MainActor.run {
             withAnimation {
                 fetchingStory = false
@@ -143,7 +145,7 @@ func fetchStory(_ promptText: String) async {
         print(error.localizedDescription)
     }
 }
-```
+````
 
 Note that I request for image prompts by combining 2 story sentences at a time. This is because I intented for the storybook to have 4 pages, each displaying an image and 2 sentences. Since at present there is no way to generate images using Gemini via the [Swift SDK](https://github.com/google/generative-ai-swift), so we use the [OpenAIKit](https://github.com/OpenDive/OpenAIKit.git) helper package for interacting with OpenAI. Once we have the image prompts given to us by Gemini, the next task is to once again provide a prompt to OpenAI's Dall-E3 model to generate images. Remember that when registering with OpenAI as a new user, you are given $5 in credits that are utilised towards image generation so use it wisely as the credits expire after a few months and you'd have to purchase additional credits.
 
@@ -160,10 +162,10 @@ private let openAi = OpenAI(Configuration(organizationId: APIKey.openAIOrgId, ap
 func generateImages(for prompts: [String], story: String) async throws -> [UIImage] {
     return try await withThrowingTaskGroup(of: (Int, UIImage).self) { group in
         var generatedImages = [UIImage?](repeating: nil, count: prompts.count)
-        
+
         for (index, prompt) in prompts.enumerated() {
             group.addTask {
-                
+
                 do {
                     let prompt = """
                     Given the following story for context enclosed between the $ symbol: $\(story)$,
@@ -184,11 +186,11 @@ func generateImages(for prompts: [String], story: String) async throws -> [UIIma
                 }
             }
         }
-        
+
         for try await (index, image) in group {
             generatedImages[index] = image
         }
-        
+
         return generatedImages.compactMap { $0 }
     }
 }
@@ -198,17 +200,18 @@ The code is fairly straightforward here, given the 2-sentence prompts and the co
 
 Finally, the result of the combination of Gemini & Dall-E can be seen below:
 
-![image](/images/post16/storybook-screens-1.png)
+![image](/images/posts/storybook-with-gemini-dalle-swiftui/storybook-screens-1.png)
 
-![image](/images/post16/storybook-screens-2.png)
+![image](/images/posts/storybook-with-gemini-dalle-swiftui/storybook-screens-2.png)
 
-![image](/images/post16/storybook.gif)
+![image](/images/posts/storybook-with-gemini-dalle-swiftui/storybook.gif)
 
-I had a lot of fun creating this app as combining Gemini with Dall-E made for some great visual story time. The upside is that you can ask your kids for literally any kind of story they'd like to read or be read and the prompts can result in some engaging story telling. The only minor downside at the moment is the image generation cost. I hope that Gemini's image generation capabilities are made available to developer's soon. It is something that I cannot wait to explore. This was just one way to combine the unlimited potential that AI has for education & entertainment, so give it a go and let me know of the stories that you created :)  
+I had a lot of fun creating this app as combining Gemini with Dall-E made for some great visual story time. The upside is that you can ask your kids for literally any kind of story they'd like to read or be read and the prompts can result in some engaging story telling. The only minor downside at the moment is the image generation cost. I hope that Gemini's image generation capabilities are made available to developer's soon. It is something that I cannot wait to explore. This was just one way to combine the unlimited potential that AI has for education & entertainment, so give it a go and let me know of the stories that you created :)
 
 And that's it for this post! The complete code can be found [here.](https://github.com/anupdsouza/ios-gemini-storybook)
 
 ---
-Consider subscribing to my [YouTube channel](https://www.youtube.com/@areaswiftyone?sub_confirmation=1) & follow me on [X(Twitter)](https://x.com/areaswiftyone). Leave a comment if you have any questions. 
+
+Consider subscribing to my [YouTube channel](https://www.youtube.com/@areaswiftyone?sub_confirmation=1) & follow me on [X(Twitter)](https://x.com/areaswiftyone). Leave a comment if you have any questions.
 
 Share this article if you found it useful !
