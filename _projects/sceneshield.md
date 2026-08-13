@@ -21,7 +21,7 @@ The app currently focuses on **subtitle-based language analysis**. It integrates
 
 The longer-term goal is to make SceneShield a lightweight, privacy-friendly companion for families who maintain their own movie libraries and want better visibility into the content they’re about to watch together.
 
-## ![sceneshield-screenshots](/images/projects/sceneshield/sceneshield-screenshots.jpg)
+## ![screenshots](/images/projects/sceneshield/screenshots.jpg)
 
 ## Tech Stack
 
